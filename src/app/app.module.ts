@@ -1,3 +1,4 @@
+import { AgmCoreModule } from '@agm/core';
 import { environment } from '../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -19,6 +20,7 @@ import { MapComponent } from './map/map.component';
   ],
   imports: [
     BrowserModule,
+    AgmCoreModule.forRoot(environment.googlemaps),
     AngularFireModule.initializeApp(environment.firebase, "bring-me-out"),
     AngularFireDatabaseModule,
     AngularFireAuthModule

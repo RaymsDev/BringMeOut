@@ -12,5 +12,8 @@ export const environment = {
     projectId: "bring-me-out",
     storageBucket: "bring-me-out.appspot.com",
     messagingSenderId: "996670714871"
+  },
+  googlemaps:{
+    apiKey:"AIzaSyDmokc17_MQlrqh97HKuq3WlHzJvcXVowo"
   }
 };
