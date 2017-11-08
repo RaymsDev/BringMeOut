@@ -54,7 +54,8 @@
     }
   },
   "defaults": {
-    "styleExt": "sass",
-    "component": {}
+    "styleExt": "scss",
+    "component": {
+    }
   }
 }
