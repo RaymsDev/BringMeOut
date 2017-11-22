@@ -9,14 +9,21 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
-
+  isLogin: boolean;
+  user:any;
   constructor(public afAuth: AngularFireAuth) { }
 
   ngOnInit() {  
+    this.isLogin = false;
   }
 
   login(){
-    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    .then(success=>{
+      this.user = success.user;
+      this.isLogin = true;
+      console.log(success);
+    });
   }
 
   logout(){
