@@ -1,6 +1,6 @@
 # BringMeOut
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.1.
 
 ## Development server
 
@@ -21,18 +21,6 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Running in docker container
-
-You need to install [Docker](https://www.docker.com/).
-
-To create an image:
-Run `docker build -t  bring-me-out:dev .` 
-
-To run container:
-Run `docker run -d --name bring-me-out -p 4200:4200 bring-me-out:dev`
-
-
 
 ## Further help
 

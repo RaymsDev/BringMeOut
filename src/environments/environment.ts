@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  firebase:{
+  firebase: {
     apiKey: "AIzaSyCDDOfgg_LIbLKX31AvIyYeHgJ0WXfZVCs",
     authDomain: "bring-me-out.firebaseapp.com",
     databaseURL: "https://bring-me-out.firebaseio.com",
@@ -13,7 +13,7 @@ export const environment = {
     storageBucket: "bring-me-out.appspot.com",
     messagingSenderId: "996670714871"
   },
-  googlemaps:{
-    apiKey:"AIzaSyDmokc17_MQlrqh97HKuq3WlHzJvcXVowo"
+  googlemaps: {
+    apiKey: "AIzaSyDmokc17_MQlrqh97HKuq3WlHzJvcXVowo"
   }
 };
