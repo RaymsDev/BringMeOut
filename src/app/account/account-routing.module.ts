@@ -2,6 +2,7 @@ import { EmailComponent } from './email/email.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [{
   path: 'login',
@@ -9,6 +10,9 @@ const routes: Routes = [{
 }, {
   path: 'login-email',
   component: EmailComponent
+},{
+  path: 'signup',
+  component: SignupComponent
 }];
 
 @NgModule({
@@ -17,4 +21,4 @@ const routes: Routes = [{
 })
 export class AccountRoutingModule { }
 
-export const routedComponents = [LoginComponent, EmailComponent];
+export const routedComponents = [LoginComponent, EmailComponent, SignupComponent];

@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { EmailComponent } from './email/email.component';
 import { MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { SignupComponent } from './signup/signup.component';
 
 const MATERIAL_MODULES = [
   MatInputModule,
@@ -18,6 +19,6 @@ const MATERIAL_MODULES = [
     AccountRoutingModule,
     ...MATERIAL_MODULES
   ],
-  declarations: [routedComponents]
+  declarations: [routedComponents, SignupComponent]
 })
 export class AccountModule { }

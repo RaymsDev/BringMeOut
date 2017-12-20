@@ -23,7 +23,7 @@ export class EmailComponent implements OnInit {
           formData.value.password)
         .then(success=>{
           console.log("Login with email success", success);
-          this.router.navigateByUrl("");
+          this.router.navigate(["/"]);
         })
         .catch(error=>{
           console.log(error);
@@ -31,6 +31,5 @@ export class EmailComponent implements OnInit {
         });
     }
   }
-
 }
 
