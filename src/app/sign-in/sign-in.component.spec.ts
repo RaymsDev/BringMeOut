@@ -1,6 +1,10 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 import { SignInComponent } from './sign-in.component';
+import { FIREBASE_MODULES } from '../shared/firebase.shared';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;
@@ -8,7 +12,9 @@ describe('SignInComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignInComponent ]
+      imports:[...FIREBASE_MODULES],
+      declarations: [ SignInComponent ],
+      providers:[AngularFireAuth]
     })
     .compileComponents();
   }));
