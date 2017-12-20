@@ -1,0 +1,20 @@
+<div class="form-container">
+  <a routerLink="/login" id="goback">Go back</a>
+  <h2>Login</h2>
+
+  <span class="error" *ngIf="error">{{ error }}</span>
+
+  <form #formData="ngForm" (ngSubmit)="onSubmit(formData)">
+
+    <mat-form-field>
+      <input matInput placeholder="Email address" (ngModel)="email" name="email" type="email" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Password" (ngModel)="password" name="password" type="password" required>
+    </mat-form-field>
+
+    <button mat-raised-button [disabled]="!formData.valid" color="primary" type="submit">Login</button>
+    <a routerLink="/signup" class="alc">Don't have an account?</a>
+  </form>
+</div>

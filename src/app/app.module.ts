@@ -1,8 +1,10 @@
+import { AccountModule } from './account/account.module';
+import { AppRoutingModule } from './app-routing.module';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppComponent } from './app.component';
 import { MapModule } from './map/map.module';
@@ -13,7 +15,7 @@ import { SignInModule } from './sign-in/sign-in.module';
 
 const APP_MODULES = [
   MapModule,
-  SignInModule
+  AccountModule
 ];
 
 const MATERIAL_MODULES = [
@@ -26,13 +28,11 @@ const MATERIAL_MODULES = [
     AppComponent,
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    NoopAnimationsModule,
+    SharedModule,
+    AppRoutingModule,
     ...MATERIAL_MODULES,
     ...APP_MODULES,
-    ...FIREBASE_MODULES,
-    SharedModule
+    ...FIREBASE_MODULES
   ],
   providers: [],
   bootstrap: [AppComponent],
