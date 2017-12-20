@@ -1,4 +1,3 @@
-import { FIREBASE_MODULES } from './shared/firebase.shared';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -7,6 +6,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 
 import { AppComponent } from './app.component';
 import { MapModule } from './map/map.module';
+import { FIREBASE_MODULES } from './shared/firebase.shared';
 import { SharedModule } from './shared/shared.module';
 import { SignInModule } from './sign-in/sign-in.module';
 

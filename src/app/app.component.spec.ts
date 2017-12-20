@@ -1,15 +1,11 @@
-import { environment } from './../environments/environment';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import {AngularFireModule} from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MapModule } from './map/map.module';
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
 import { SignInModule } from './sign-in/sign-in.module';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { async, TestBed } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { $ } from 'protractor';
+
+import { AppComponent } from './app.component';
 import { FIREBASE_MODULES } from './shared/firebase.shared';
 
 const APP_MODULES = [
