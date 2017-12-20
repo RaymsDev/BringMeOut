@@ -1,43 +1,41 @@
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { environment } from '../environments/environment';
-import { BrowserModule } from '@angular/platform-browser';
+import { FIREBASE_MODULES } from './shared/firebase.shared';
 import { NgModule } from '@angular/core';
-import {AngularFireModule} from 'angularfire2';
-import {AngularFireDatabaseModule} from 'angularfire2/database';
-import {AngularFireAuthModule} from 'angularfire2/auth';
-import {MatSidenavModule} from '@angular/material/sidenav'
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { MapComponent } from './map/map.component';
+import { MapModule } from './map/map.module';
+import { SharedModule } from './shared/shared.module';
+import { SignInModule } from './sign-in/sign-in.module';
 
-const APP_COMPONENTS = [
-  AppComponent,
-  SignInComponent,
-  MapComponent,
+
+const APP_MODULES = [
+  MapModule,
+  SignInModule
 ];
 
-const MATERIAL_COMPONENTS = [
+const MATERIAL_MODULES = [
   MatSidenavModule,
   MatButtonModule
 ];
 
 @NgModule({
   declarations: [
-    ...APP_COMPONENTS,
-    
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    ...MATERIAL_COMPONENTS,
-    AngularFireModule.initializeApp(environment.firebase, "bring-me-out"),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule
+    ...MATERIAL_MODULES,
+    ...APP_MODULES,
+    ...FIREBASE_MODULES,
+    SharedModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AppComponent]
 })
 export class AppModule { }
