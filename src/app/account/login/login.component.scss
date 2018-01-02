@@ -1,0 +1,13 @@
+
+:host(){
+    width: 100%;
+}
+.form-container{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    .facebook {
+        background:#3B5998;
+        color:#fff;
+    }
+}
