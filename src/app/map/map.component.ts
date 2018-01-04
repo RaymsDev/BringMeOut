@@ -48,7 +48,7 @@ export class MapComponent implements OnInit {
 
   private initMarkers() {
   this.userPositionMarker = new Marker({
-      icon:"./../../assets/images/markers/user_position.png",
+      icon:"./../assets/images/markers/user_position.png",
       name:"user_position"
     });
   }

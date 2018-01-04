@@ -1,0 +1,21 @@
+<mat-card class="account-container">
+  <mat-card-content class="button-container">
+    <object class="login-logo" data="./assets/images/icons/lock.svg" type="image/svg+xml"></object>
+    <span class="error" *ngIf="error">{{ error }}</span>
+    
+        <button mat-raised-button (click)="loginFacebook()" class="button-login facebook">
+          Login With Facebook
+        </button>
+        <button mat-raised-button (click)="loginGoogle()" class="button-login google">Login With Google</button>
+        <button mat-raised-button routerLink="/login-email" class="button-login email">Email</button>
+      
+        <div class="signup">
+            <a class="link" routerLink="/signup" routerLinkActive="active">No account?
+              Create one here...
+            </a>
+        </div>
+  </mat-card-content>
+</mat-card>
+
+
+

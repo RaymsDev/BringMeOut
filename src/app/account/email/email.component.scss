@@ -1,0 +1,48 @@
+:host() {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.account-container{
+    width: 500px;
+    .email-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .title{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 100%;
+            h2{
+                font-size: 2.5em;
+            }
+        }
+        .form-container{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .form-element{
+                width: 100%;
+            }
+            .button-email{
+                padding: 1.2em;
+                line-height: 1;
+                font-size: 1.3em;
+                margin-bottom: 24px;
+            }
+        }
+        .signup-link{
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
+}

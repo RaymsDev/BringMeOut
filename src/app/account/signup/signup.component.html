@@ -1,0 +1,22 @@
+<mat-card class="account-container">
+  <mat-card-content class="signup-container">
+    <div class="title">
+        <a routerLink="/login" id="goback">Go back</a>
+        <h2>Join now</h2>
+    </div>
+    <span class="error" *ngIf="error">{{ error }}</span>
+
+    <form class="form-container" #formData="ngForm" (ngSubmit)="onSubmit(formData)">
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Email address" (ngModel)="email" name="email" type="email" required>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Password" (ngModel)="password" name="password" type="password" required>
+      </mat-form-field>
+
+      <button class="form-element button-signup" mat-raised-button [disabled]="!formData.valid" color="primary" type="submit">Sign up!</button>
+    </form>
+  </mat-card-content>
+</mat-card>

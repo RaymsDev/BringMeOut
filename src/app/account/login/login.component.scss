@@ -1,0 +1,47 @@
+:host() {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-container {
+  width: 500px;
+  .login-logo{
+    width: 40%;
+    margin-bottom: 24px;
+  }
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .button-login {
+      padding: 1.2em;
+      width: 100%;
+      line-height: 1;
+      margin-bottom: 24px;
+      font-size: 1.3em;
+
+    }
+    .facebook {
+      background: #3B5998 url(./../../../assets/images/icons/facebook.svg) no-repeat 14px 6px;
+      background-size: 47px;
+      color: #fff;
+    }
+    .google {
+      background: #fff  url(./../../../assets/images/icons/google.svg) no-repeat 25px;
+      background-size: 25px;
+    }
+    .email {
+      background: #fff  url(./../../../assets/images/icons/mail.svg) no-repeat 25px;
+      background-size: 25px;
+    }
+    .signup{
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
