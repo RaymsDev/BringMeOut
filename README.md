@@ -27,5 +27,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Facebook Connection
-While the App is on devellopment you must be registred by Admin on facebook platforrm as a beta user.
+While the App is on development you must be registred by Admin on facebook platform as a beta user.
 
