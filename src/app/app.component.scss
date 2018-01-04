@@ -1,8 +1,12 @@
+$backgroundColor: #303030;
+
 .sidenav-container{
+    background-color: $backgroundColor;
     height: 100%;
     width: 100%;
     
     .sidenav{
+        background-color: $backgroundColor;
         width: 300px;
     }
     

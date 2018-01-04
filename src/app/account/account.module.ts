@@ -6,11 +6,13 @@ import { LoginComponent } from './login/login.component';
 import { EmailComponent } from './email/email.component';
 import { MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card'
 import { SignupComponent } from './signup/signup.component';
 
 const MATERIAL_MODULES = [
   MatInputModule,
-  MatButtonModule
+  MatButtonModule,
+  MatCardModule
 ];
 
 @NgModule({
