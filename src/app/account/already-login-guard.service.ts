@@ -10,6 +10,7 @@ export class AlreadyLoginGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<boolean> {
+    console.log('Guard@AlreadyLoginGuard is called!');
     return this.authService.user$.pipe(
       take(1),
       map(user => user ? false : true),

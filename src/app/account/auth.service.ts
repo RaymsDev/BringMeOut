@@ -13,14 +13,14 @@ export class AuthService {
       this.user$ = this.afAuth.authState;
     }
 
-  loginFacebook() {
+  loginFacebook():Promise<any> {
     const provider = new firebase.auth.FacebookAuthProvider();
-    this.afAuth.auth.signInWithPopup(provider);
+    return this.afAuth.auth.signInWithPopup(provider);
   }
 
-  loginGoogle() {
+  loginGoogle():Promise<any> {
     const provider = new firebase.auth.GoogleAuthProvider();
-    this.afAuth.auth.signInWithPopup(provider);
+    return this.afAuth.auth.signInWithPopup(provider);
   }
   loginClassic(email, password): Promise < any > {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
