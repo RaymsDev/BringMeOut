@@ -1,11 +1,16 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
-    <div>
-      <a href="#">BringMeOut</a>
+    <div class="ban">
+      <a class="link" routerLink="/">BringMeOut</a>
     </div>
-    <div>
-      <button *ngIf="!userIsLoggedIn()" routerLink="/login">Login!</button>
-      <button *ngIf="userIsLoggedIn()" routerLink="/logout">Logout!</button>
+    <div class="button-container">
+        <button class="login-button" mat-raised-button color="primary" *ngIf="!userIsLoggedIn()" routerLink="/login">Login</button>
+        <button class="login-button" mat-raised-button color="accent" *ngIf="userIsLoggedIn()" routerLink="/logout">Logout</button>
+    </div>
+    <div class="footer">
+      <div class="copyright">
+          © 2018 BringMeOut
+      </div>
     </div>
   </mat-sidenav>
   <!-- Website content -->

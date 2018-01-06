@@ -1,13 +1,45 @@
 $backgroundColor: #fafafa;
-
+$primary:#673ab7;
 .sidenav-container{
     background-color: $backgroundColor;
     height: 100%;
     width: 100%;
     
     .sidenav{
+        display: flex;
+        flex-direction: column;
         background-color: $backgroundColor;
         width: 300px;
+        .ban{
+            height: 100px;
+            background-color: $primary;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .link{
+                color: #fafafa;
+                font-size: 3em;
+            }
+        }
+        .button-container{
+            width: 100%;
+            .login-button{
+                width: 100%;
+                border-radius: 0;
+            }
+        }
+        .footer{
+            height: 50px;
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .copyright{
+                margin:auto;
+                color:$primary;
+                font-weight: bold;
+            }
+        }
     }
     
 }
