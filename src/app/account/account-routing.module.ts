@@ -1,3 +1,5 @@
+import { AuthGuard } from './auth-guard.service';
+import { LogoutComponent } from './logout/logout.component';
 import { EmailComponent } from './email/email.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
@@ -13,6 +15,10 @@ const routes: Routes = [{
 },{
   path: 'signup',
   component: SignupComponent
+},{
+  path: 'logout',
+  component: LogoutComponent,
+  canActivate:[AuthGuard]
 }];
 
 @NgModule({
@@ -21,4 +27,4 @@ const routes: Routes = [{
 })
 export class AccountRoutingModule { }
 
-export const routedComponents = [LoginComponent, EmailComponent, SignupComponent];
+export const routedComponents = [LoginComponent, EmailComponent, SignupComponent, LogoutComponent];

@@ -4,7 +4,8 @@
       <a href="#">BringMeOut</a>
     </div>
     <div>
-      <button routerLink="/login">Login!</button>
+      <button *ngIf="!userIsLoggedIn()" routerLink="/login">Login!</button>
+      <button *ngIf="userIsLoggedIn()" routerLink="/logout">Logout!</button>
     </div>
   </mat-sidenav>
   <!-- Website content -->
