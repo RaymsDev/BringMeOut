@@ -1,0 +1,16 @@
+<mat-card class="account-container">
+  <mat-card-content class="lgout-container">
+    <div class="title">
+      <h2>Logout</h2>
+    </div>
+
+
+    <span class="error" *ngIf="error">{{ error }}</span>
+
+    <div>
+      Logout success! <a class="link" routerLink="/login">Login here...
+      </a>
+    </div>
+    
+  </mat-card-content>
+</mat-card>

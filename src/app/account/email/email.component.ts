@@ -1,6 +1,7 @@
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { AuthService } from './../auth.service';
 
 @Component({
   selector: 'app-email',
@@ -12,24 +13,25 @@ export class EmailComponent implements OnInit {
   state: string = '';
   error: any;
 
-  constructor(public afAuth: AngularFireAuth, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
   onSubmit(formData) {
     if (formData.valid) {
-      this.afAuth.auth.signInWithEmailAndPassword(
+      this.authService.loginClassic(
           formData.value.email,
           formData.value.password)
-        .then(success=>{
+        .then(success => {
           console.log("Login with email success", success);
           this.router.navigate(["/"]);
         })
-        .catch(error=>{
+        .catch(error => {
           console.log(error);
           this.error = error.message;
         });
     }
   }
 }
+
 
