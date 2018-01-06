@@ -1,3 +1,4 @@
+import { AlreadyLoginGuard } from './already-login-guard.service';
 import { AuthGuard } from './auth-guard.service';
 import { LogoutComponent } from './logout/logout.component';
 import { EmailComponent } from './email/email.component';
@@ -8,13 +9,16 @@ import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [{
   path: 'login',
-  component: LoginComponent
+  component: LoginComponent,
+
 }, {
   path: 'login-email',
-  component: EmailComponent
+  component: EmailComponent,
+
 },{
   path: 'signup',
-  component: SignupComponent
+  component: SignupComponent,
+
 },{
   path: 'logout',
   component: LogoutComponent,
@@ -24,6 +28,7 @@ const routes: Routes = [{
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  providers:[AuthGuard, AlreadyLoginGuard]
 })
 export class AccountRoutingModule { }
 

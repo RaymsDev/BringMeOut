@@ -10,6 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card'
 import { SignupComponent } from './signup/signup.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AuthService } from './auth.service';
 
 const MATERIAL_MODULES = [
   MatInputModule,
@@ -24,6 +25,6 @@ const MATERIAL_MODULES = [
     ...MATERIAL_MODULES
   ],
   declarations: [routedComponents, SignupComponent, LogoutComponent],
-  providers:[AuthGuard]
+  providers:[AuthService]
 })
 export class AccountModule { }
