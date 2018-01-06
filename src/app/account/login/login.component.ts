@@ -10,34 +10,42 @@ import { AuthService } from './../auth.service';
 })
 export class LoginComponent implements OnInit {
   error: any;
-  constructor(public authService:AuthService, private router: Router) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   loginFacebook() {
     this.authService.loginFacebook()
-    .then(success => {
-      console.log("Login with Facebook success", success);
-      this.router.navigate(["/"]);
-    })
-    .catch(error => {
-      console.log(error);
-      this.error = error.message;
-    });
+      .then(success => {
+        console.log("Login with Facebook success", success);
+      })
+      .catch(error => {
+        console.log(error);
+        this.error = error.message;
+      });
   }
 
   loginGoogle() {
     this.authService.loginGoogle()
-    .then(success => {
-      console.log("Login with Google success", success);
-      this.router.navigate(["/"]);
-    })
-    .catch(error => {
-      console.log(error);
-      this.error = error.message;
-    });
+      .then(success => {
+        console.log("Login with Google success", success);
+      })
+      .catch(error => {
+        console.log(error);
+        this.error = error.message;
+      });
   }
 
+  private onLoginRedirect() {
+    this.authService.user$
+      .subscribe(res => {
+        if (res) {
+          this.router.navigate(['/']);
+        }
+      });
+  }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    this.onLoginRedirect();
+  }
 
 }
+
