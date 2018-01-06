@@ -10,15 +10,15 @@ import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [{
   path: 'login',
   component: LoginComponent,
-
+  canActivate:[AlreadyLoginGuard]
 }, {
   path: 'login-email',
   component: EmailComponent,
-
+  canActivate:[AlreadyLoginGuard]
 },{
   path: 'signup',
   component: SignupComponent,
-
+  canActivate:[AlreadyLoginGuard]
 },{
   path: 'logout',
   component: LogoutComponent,

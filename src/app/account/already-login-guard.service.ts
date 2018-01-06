@@ -1,30 +1,24 @@
 import { Observable } from 'rxjs/Rx';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { map, take, tap } from 'rxjs/operators';
+
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class AlreadyLoginGuard implements CanActivate {
-    constructor(private afAuth: AngularFireAuth, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        console.log('AlreadyLoginGuard#canActivate called');
-        if(!this.isLoggedIn()){
-            return true;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<boolean> {
+    return this.authService.user$.pipe(
+      take(1),
+      map(user => user ? false : true),
+      tap(isLogout => {
+        if(!isLogout){
+            console.error('USER ALREADY LOGIN!');
+            this.router.navigate(['/']);
         }
-        this.router.navigate(['/']);
-        return false;
-        
-    }
-
-    private isLoggedIn(): boolean{
-        this.afAuth.auth.getRedirectResult()
-        .then(success=>{
-            console.log(success)
-        })
-        .catch(error=>{
-            console.log(error)
-        });
-        return true;
-    }
+      })
+    );
+  }
 }
