@@ -1,3 +1,4 @@
+import { EventService } from './event/event.service';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -8,6 +9,7 @@ import { AppComponent } from './app.component';
 import { MapModule } from './map/map.module';
 import { FIREBASE_MODULES } from './shared/firebase.shared';
 import { SharedModule } from './shared/shared.module';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 
 
@@ -32,7 +34,7 @@ const MATERIAL_MODULES = [
     ...APP_MODULES,
     ...FIREBASE_MODULES
   ],
-  providers: [],
+  providers: [EventService],
   bootstrap: [AppComponent],
   entryComponents: [AppComponent]
 })

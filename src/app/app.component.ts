@@ -1,3 +1,4 @@
+import { EventService } from './event/event.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,12 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'Bring Me Out!';
-  constructor(private afAuth: AngularFireAuth){
+  constructor(private afAuth: AngularFireAuth, private eventService: EventService){
 
   }
 
   ngOnInit(){
-    
+
   }
 
   public userIsLoggedIn(): boolean{
