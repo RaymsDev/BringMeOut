@@ -2,8 +2,11 @@ import { EventService } from './event/event.service';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
+
 
 import { AccountModule } from './account/account.module';
+import { EventModule} from './event/event.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapModule } from './map/map.module';
@@ -13,9 +16,12 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
 
 
+
 const APP_MODULES = [
   MapModule,
-  AccountModule
+  AccountModule,
+  EventModule,
+  MatIconModule
 ];
 
 const MATERIAL_MODULES = [
