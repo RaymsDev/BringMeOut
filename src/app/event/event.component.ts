@@ -8,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventComponent implements OnInit {
 
-
-
   constructor() {
 
   }
