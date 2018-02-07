@@ -1,17 +1,11 @@
 <div>
-  <label for="file-input">File input</label>
-  <input type="file-input" id="file-input" type="file" (change)="startUpload($event.target.files)">
-</div>
+  <button mat-raised-button (click)="uploadFileInput.click()">Upload Image</button>
+  <input hidden type="file" #uploadFileInput (change)="startUpload($event.target.files)">
 
-<div *ngIf="snapshot | async as snap">
+  <div *ngIf="isUploaded">
+    <img [src]="uploadedUrl | async" alt="uploaded image">
+    <button mat-raised-button (click)="remove()">Remove</button>
+  </div>
 
-  <div *ngIf="downloadURL | async as url">
-    <h3>Results!</h3>
-    <img [src]="url"><br>
-    <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
-  </div> 
 
-  <button (click)="task.pause()" class="button is-warning" [disabled]="!isActive(snap)">Pause</button>
-  <button (click)="task.cancel()" class="button is-danger" [disabled]="!isActive(snap)">Cancel</button>
-  <button (click)="task.resume()" class="button is-info"   [disabled]="!(snap?.state === 'paused')">Resume</button>
 </div>

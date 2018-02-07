@@ -1,6 +1,6 @@
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,  EventEmitter} from '@angular/core';
 import { AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
 import { tap } from 'rxjs/operators';
 
@@ -11,44 +11,77 @@ import { tap } from 'rxjs/operators';
 })
 export class FileUploadComponent implements OnInit {
   task: AngularFireUploadTask;
-  percentage: Observable<number>;
-  snapshot: Observable<any>;
-  downloadUrl: Observable<string>;
+  percentage: Observable < number > ;
+  snapshot: Observable < any > ;
+  uploadedUrl: Observable < string > ;
+  isUploaded: boolean;
+  private storagePath: string;
+  //return url
+  @Output() downloaded = new EventEmitter <string> ();
+  // return progression
+  @Output() progression = new EventEmitter <number> ();
 
-  constructor(private storage: AngularFireStorage, private db: AngularFirestore) { }
+  constructor(private storage: AngularFireStorage, private db: AngularFirestore) {}
 
   ngOnInit() {
+    this.init();
   }
 
-  public startUpload(files: FileList):void{
-    const file:File = files.item(0);
+  private init() {
+    this.isUploaded = false;
+  }
+
+  public startUpload(files: FileList): void {
+    const file: File = files.item(0);
 
     // File type validation
-    if(file.type.split('/')[0] !== 'image'){
-      console.error(`unsupported file type: ${file.type}`);
+    if (file.type.split('/')[0] !== 'image') {
+      alert('Unsuported file type! Choose image please!')
       return;
     }
 
     // The storage path
-    const storagePath = `images/${new Date().getTime()}_${file.name}`; 
+    const storagePath = `event-images/${new Date().getTime()}_${file.name}`;
+    this.storagePath = storagePath;
+    const customMetadata = {
+      app: "BringMeOut"
+    };
 
-    const customMetadata = { app:"BringMeOut"};
+    this.task = this.storage.upload(storagePath, file, {
+      customMetadata
+    });
+    this.percentage = this.task.percentageChanges();
+    this.percentage.subscribe(percent => {
+      this.progression.emit(percent);
+    });
 
-    this.task = this.storage.upload(storagePath, file, {customMetadata});
-    this.task.catch(err=>{
+    this.snapshot = this.task.snapshotChanges();
+    this.snapshot.subscribe(snap => {
+      console.log(snap);
+    });
+
+    this.task.catch(err => {
       console.log(err);
     });
-    this.percentage = this.task.percentageChanges()
-    this.snapshot   = this.task.snapshotChanges();
 
-    this.downloadUrl = this.task.downloadURL();
-    this.downloadUrl.subscribe(url=>{
-      console.log(url);
+    this.uploadedUrl = this.task.downloadURL();
+    this.uploadedUrl.subscribe(url => {
+      this.downloaded.emit(url);
+      this.isUploaded = true;
     });
   }
 
-  isActive(snapshot){
+  isActive(snapshot) {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
   }
 
+  public remove(){
+    this.storage.ref(this.storagePath)
+    .delete()
+    .subscribe(result=>{
+      console.log(result);
+    });
+  }
+
 }
+

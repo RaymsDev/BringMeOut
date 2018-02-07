@@ -1,3 +1,4 @@
+import { FileUploadModule } from './file-upload/file-upload.module';
 import { TestModule } from './test/test.module';
 import { EventService } from './event/event.service';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 const APP_MODULES = [
   MapModule,
   AccountModule,
-  TestModule
+  FileUploadModule
 ];
 
 const MATERIAL_MODULES = [

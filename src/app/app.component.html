@@ -7,6 +7,9 @@
         <button class="login-button" mat-raised-button color="primary" *ngIf="!userIsLoggedIn()" routerLink="/login">Login</button>
         <button class="login-button" mat-raised-button color="accent" *ngIf="userIsLoggedIn()" routerLink="/logout">Logout</button>
     </div>
+    <div>
+      <app-file-upload (downloaded)="downloadUrlHandler($event)" (progression)="progressionHandler($event)"></app-file-upload>
+    </div>
     <div class="footer">
       <div class="copyright">
           © 2018 BringMeOut
