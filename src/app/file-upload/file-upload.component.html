@@ -1,0 +1,11 @@
+<div>
+  <button mat-raised-button (click)="uploadFileInput.click()">Upload Image</button>
+  <input hidden type="file" #uploadFileInput (change)="startUpload($event.target.files)">
+
+  <div *ngIf="isUploaded">
+    <img [src]="uploadedUrl | async" alt="uploaded image">
+    <button mat-raised-button (click)="remove()">Remove</button>
+  </div>
+
+
+</div>
