@@ -1,3 +1,4 @@
+import { TestModule } from './test/test.module';
 import { EventService } from './event/event.service';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +16,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
 const APP_MODULES = [
   MapModule,
-  AccountModule
+  AccountModule,
+  TestModule
 ];
 
 const MATERIAL_MODULES = [
