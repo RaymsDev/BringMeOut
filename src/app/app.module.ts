@@ -1,3 +1,5 @@
+import { FileUploadModule } from './file-upload/file-upload.module';
+import { TestModule } from './test/test.module';
 import { EventService } from './event/event.service';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';

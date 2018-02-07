@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { EventService } from './event/event.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit } from '@angular/core';
@@ -21,5 +22,12 @@ export class AppComponent implements OnInit {
     return this.afAuth.auth.currentUser ? true: false;
   }
 
+  public downloadUrlHandler(downloadUrl: string):void{
+    console.log(downloadUrl);
+  }
+
+  public progressionHandler(percent: number){
+    console.log(percent);
+  }
 
 }
