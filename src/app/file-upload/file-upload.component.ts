@@ -11,7 +11,8 @@ import { tap } from 'rxjs/operators';
 })
 export class FileUploadComponent implements OnInit {
   task: AngularFireUploadTask;
-  percentage: Observable < number > ;
+  percentage: Observable < number >;
+  percent: number;
   snapshot: Observable < any > ;
   uploadedUrl: Observable < string > ;
   isUploaded: boolean;
@@ -53,11 +54,13 @@ export class FileUploadComponent implements OnInit {
     this.percentage = this.task.percentageChanges();
     this.percentage.subscribe(percent => {
       this.progression.emit(percent);
+      this.percent = Math.round(percent);
     });
 
     this.snapshot = this.task.snapshotChanges();
     this.snapshot.subscribe(snap => {
       console.log(snap);
+
     });
 
     this.task.catch(err => {
@@ -79,7 +82,9 @@ export class FileUploadComponent implements OnInit {
     this.storage.ref(this.storagePath)
     .delete()
     .subscribe(result=>{
-      console.log(result);
+      console.log("File removed", result);
+      this.isUploaded = false;
+      this.percent = null;
     });
   }
 

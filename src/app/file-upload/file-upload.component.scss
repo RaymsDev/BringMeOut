@@ -1,3 +1,20 @@
 progress::-webkit-progress-value {
   transition: width 0.1s ease;
 }
+
+.flex-column-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-upload-container{
+ 
+  .image-container{
+    max-width: 400px;
+    img{
+      width: 100%;
+    }
+  }
+}

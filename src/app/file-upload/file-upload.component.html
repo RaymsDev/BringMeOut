@@ -1,11 +1,18 @@
-<div>
-  <button mat-raised-button (click)="uploadFileInput.click()">Upload Image</button>
+<div class="file-upload-container flex-column-center">
+  <div *ngIf="!isUploaded" class="flex-column-center">
+    <button mat-raised-button (click)="uploadFileInput.click()">Upload Image</button>
+    <div class="loader-container" *ngIf="percent">
+      <p>
+        Uploading, please wait... {{percent}}%
+      </p>
+    </div>
+  </div>
+
   <input hidden type="file" #uploadFileInput (change)="startUpload($event.target.files)">
 
-  <div *ngIf="isUploaded">
+  <div *ngIf="isUploaded" class="image-container flex-column-center">
     <img [src]="uploadedUrl | async" alt="uploaded image">
     <button mat-raised-button (click)="remove()">Remove</button>
   </div>
-
 
 </div>
