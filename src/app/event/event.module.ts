@@ -17,6 +17,7 @@ import {MatNativeDateModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
+import {FileUploadModule} from '../file-upload/file-upload.module';
 
 
 const MATERIAL_MODULES = [
@@ -34,6 +35,7 @@ const MATERIAL_MODULES = [
   imports: [
     CommonModule,
     EventRoutingModule,
+    FileUploadModule,
     ...MATERIAL_MODULES,
     SharedModule
   ],

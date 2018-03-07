@@ -17,8 +17,14 @@ export class EventService {
     return this.items$;
   }
 
-  public createEvent(event: IEvent){
-    this.collection.add(JSON.parse(JSON.stringify(event)));
+  public createEvent(event: IEvent): Promise<any> {
+    return this.collection.add(JSON.parse(JSON.stringify(event)))
+      .then(result=>{
+        console.log(result);
+      })
+      .catch(error=>{
+        console.log(error)
+      });
   }
 
   public updateEvent(){

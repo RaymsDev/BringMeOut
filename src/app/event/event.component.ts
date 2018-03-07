@@ -42,7 +42,7 @@ export class EventComponent implements OnInit {
   }
 
   sendButtonFire(): void {
-    console.log(typeof this.eventCreate);
+    //console.log(this.eventCreate);
     this.eventService.createEvent(this.eventCreate);
   }
 
@@ -67,6 +67,10 @@ export class EventComponent implements OnInit {
     if (index >= 0) {
       this.eventCreate.keyWords.splice(index, 1);
     }
+  }
+
+  imageSrtingPath(event: string): void {
+    this.eventCreate.image = event;
   }
 }
 

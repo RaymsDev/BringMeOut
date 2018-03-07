@@ -18,7 +18,6 @@ import { AngularFirestore } from 'angularfire2/firestore';
 
 
 
-
 const APP_MODULES = [
   MapModule,
   AccountModule,

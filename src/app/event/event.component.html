@@ -20,17 +20,21 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Start date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+  <div class="date-edit-form">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Start date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-  <mat-form-field>
-    <input matInput [matDatepicker]="picker2" placeholder="End date">
-    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-    <mat-datepicker #picker2></mat-datepicker>
-  </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker2" placeholder="End date">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <app-file-upload (downloaded)="imageSrtingPath($event)"></app-file-upload>
 
   <mat-form-field class="demo-chip-list">
     <mat-chip-list #chipList>
