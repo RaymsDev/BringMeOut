@@ -1,0 +1,23 @@
+.form-event-create {
+  display: flex;
+  justify-content: center;
+
+  .container-event-form{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+
+    .date-edit-form{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+
+  .event-file-upload{
+    display: flex;
+    justify-content: center;
+  }
+
+}

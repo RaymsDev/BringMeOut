@@ -38,12 +38,17 @@ export class EventComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.resetEventCreate();
+  }
+
+  resetEventCreate() {
     this.eventCreate =  new Event();
   }
 
   sendButtonFire(): void {
     //console.log(this.eventCreate);
     this.eventService.createEvent(this.eventCreate);
+    this.resetEventCreate();
   }
 
   add(event: MatChipInputEvent): void {
