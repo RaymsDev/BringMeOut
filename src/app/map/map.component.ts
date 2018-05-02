@@ -1,24 +1,19 @@
-import { IMarker, Marker } from '../../models/marker.model';
-import {
-  ICoordinates,
-  Coordinates
-} from './../../models/coordinates.model';
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { EventService } from "./../event/event.service";
+import { IMarker, Marker } from "../../models/marker.model";
+import { ICoordinates, Coordinates } from "./../../models/coordinates.model";
+import { Component, OnInit } from "@angular/core";
 declare let google: any;
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  selector: "app-map",
+  templateUrl: "./map.component.html",
+  styleUrls: ["./map.component.scss"]
 })
 export class MapComponent implements OnInit {
   coordinates: ICoordinates;
   map: any;
-  userPositionMarker :IMarker;
-  constructor() {}
+  userPositionMarker: IMarker;
+  constructor(public eventService: EventService) {}
 
   ngOnInit() {
     this.initMarkers();
@@ -26,18 +21,21 @@ export class MapComponent implements OnInit {
   }
 
   private getPosition() {
-    navigator.geolocation.getCurrentPosition(position => {
-      this.coordinates = Coordinates.fromPosition(position);
-      this.initMap();
-    }, (error) => {
-      //TODO: get localisation if user block geolocalisation
-    });
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.coordinates = Coordinates.fromPosition(position);
+        this.initMap();
+      },
+      error => {
+        //TODO: get localisation if user block geolocalisation
+      }
+    );
   }
 
   private initMap() {
-    let directionsService = new google.maps.DirectionsService;
-    let directionsDisplay = new google.maps.DirectionsRenderer;
-    this.map = new google.maps.Map(document.getElementById('map'), {
+    let directionsService = new google.maps.DirectionsService();
+    let directionsDisplay = new google.maps.DirectionsRenderer();
+    this.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 15,
       center: this.coordinates
     });
@@ -47,42 +45,55 @@ export class MapComponent implements OnInit {
   }
 
   private initMarkers() {
-  this.userPositionMarker = new Marker({
-      icon:"./../assets/images/markers/user_position.png",
-      name:"user_position"
+    this.userPositionMarker = new Marker({
+      icon: "./../assets/images/markers/user_position.png",
+      name: "user_position"
     });
   }
 
   private initAutocomplete() {
-    const component = this;
-    // Create the search box and link it to the UI element.
-    let input = document.getElementById('pac-input');
-    let searchBox = new google.maps.places.SearchBox(input);
-    component.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-    // Bias the SearchBox results towards current map's viewport.
-    component.map.addListener('bounds_changed', function () {
-      searchBox.setBounds(component.map.getBounds());
-    });
 
     let markers = [];
 
-    let marker = new google.maps.Marker({
+    let userMarker = new google.maps.Marker({
       position: this.coordinates,
       icon: {
         scaledSize: new google.maps.Size(50, 50),
         url: this.userPositionMarker.icon
       },
-      
+
       map: this.map,
-      title: 'Your position!'
+      title: "Your position!"
     });
 
-    markers.push(marker);
+    markers.push(userMarker);
 
+    let eventsMarkers
+    this.getEventMarkers(this.map)
+    .then(eventMarkers=>{
+      markers.push(...eventMarkers);
+      this.initSearchPlace(markers);
+    });
+
+    
+  }
+
+  private initSearchPlace(eventMarkers: Array<any>){
+    const component = this;
+    let markers = [];
+    // Create the search box and link it to the UI element.
+    let input = document.getElementById("pac-input");
+    let searchBox = new google.maps.places.SearchBox(input);
+    component.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    // Bias the SearchBox results towards current map's viewport.
+    component.map.addListener("bounds_changed", function() {
+      searchBox.setBounds(component.map.getBounds());
+    });
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
-    searchBox.addListener('places_changed', function () {
+    searchBox.addListener("places_changed", function() {
       let places = searchBox.getPlaces();
 
       if (places.length == 0) {
@@ -90,25 +101,28 @@ export class MapComponent implements OnInit {
       }
 
       // Clear out the old markers.
-      markers.forEach(function (marker) {
+      markers.forEach(function(marker) {
         marker.setMap(null);
       });
-      markers = [];
+      markers = [...eventMarkers];
 
       // For each place, get the icon, name and location.
       let bounds = new google.maps.LatLngBounds();
-      places.forEach(function (place) {
+      places.forEach(function(place) {
+        console.log(place);
         if (!place.geometry) {
           console.log("Returned place contains no geometry");
           return;
         }
 
         // Create a marker for each place.
-        markers.push(new google.maps.Marker({
-          map: component.map,
-          title: place.name,
-          position: place.geometry.location
-        }));
+        markers.push(
+          new google.maps.Marker({
+            map: component.map,
+            title: place.name,
+            position: place.geometry.location
+          })
+        );
 
         if (place.geometry.viewport) {
           // Only geocodes have viewport.
@@ -121,4 +135,33 @@ export class MapComponent implements OnInit {
     });
   }
 
+  private getEventMarkers(map): Promise<Array<any>> {
+    const promise = new Promise<Array<any>>(resolve => {
+      this.eventService.getEvents().subscribe(events => {
+        const eventMarkers = events.map(e => {
+          if (e.location && e.location.coordinates) {
+            return new google.maps.Marker({
+              map: map,
+              title: e.name,
+              position: e.location.coordinates
+            });
+          }else{
+            const coordinates :ICoordinates = {
+              lat:43.578117,
+              lng:1.481942
+            };
+
+            return new google.maps.Marker({
+              map: map,
+              title: e.name,
+              position: coordinates
+            });
+          }
+        });
+        resolve(eventMarkers);
+      });
+    });
+
+    return promise;
+  }
 }
