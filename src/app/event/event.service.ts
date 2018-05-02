@@ -13,7 +13,7 @@ export class EventService {
     this.items$ = this.collection.valueChanges();
   }
 
-  public getEvents(): Observable<IEvent[]>{
+  public getEvents(): Observable<IEvent[]> {
     return this.items$;
   }
 
@@ -33,5 +33,11 @@ export class EventService {
 
   public deleteEvent(){
 
+  }
+
+  public getEventOrderByDateStart(): Observable<IEvent[]> {
+    this.collection = this.afs.collection<IEvent>('events', ref => ref.orderBy('start'));
+    this.items$ = this.collection.valueChanges();
+    return this.items$;
   }
 }

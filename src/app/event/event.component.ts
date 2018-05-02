@@ -5,6 +5,9 @@ import {EventType} from '../../models/eventtype.model';
 import {Event} from '../../models/event.model';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
+import {AuthService} from '../account/auth.service';
+import {User, UserInfo} from 'firebase/app';
+import {AngularFireAuth} from 'angularfire2/auth';
 
 
 @Component({
@@ -16,12 +19,14 @@ import {MatChipInputEvent} from '@angular/material';
 export class EventComponent implements OnInit {
   eventCreate: Event;
 
+  userInfo: any;
+
   //chips
   separatorKeysCodes = [ENTER, COMMA];
-  visible: boolean = true;
-  selectable: boolean = true;
-  removable: boolean = true;
-  addOnBlur: boolean = true;
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
 
   // Posibility for event type select
   eventTypeList = EventType;
@@ -29,7 +34,7 @@ export class EventComponent implements OnInit {
   // Var for angular material list select
   options: FormGroup;
 
-  constructor(private eventService: EventService, fb: FormBuilder) {
+  constructor(private eventService: EventService, private afAuth: AngularFireAuth, fb: FormBuilder) {
     this.options = fb.group({
       hideRequired: false,
       floatLabel: 'auto',
@@ -38,22 +43,27 @@ export class EventComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.resetEventCreate();
+    this.getUserInfo();
+    this.resetOrEventCreate();
   }
 
-  resetEventCreate() {
+  resetOrEventCreate(): void {
     this.eventCreate =  new Event();
+    this.eventCreate.creator = this.userInfo;
   }
 
   sendButtonFire(): void {
-    //console.log(this.eventCreate);
     this.eventService.createEvent(this.eventCreate);
-    this.resetEventCreate();
+    this.resetOrEventCreate();
+  }
+
+  getUserInfo(): void {
+    this.userInfo = this.afAuth.auth.currentUser.uid;
   }
 
   add(event: MatChipInputEvent): void {
-    let input = event.input;
-    let value = event.value;
+    const input = event.input;
+    const value = event.value;
 
     // Add our fruit
     if ((value || '').trim()) {
@@ -67,7 +77,7 @@ export class EventComponent implements OnInit {
   }
 
   remove(keyWord: any): void {
-    let index = this.eventCreate.keyWords.indexOf(keyWord);
+    const index = this.eventCreate.keyWords.indexOf(keyWord);
 
     if (index >= 0) {
       this.eventCreate.keyWords.splice(index, 1);
@@ -76,6 +86,10 @@ export class EventComponent implements OnInit {
 
   imageSrtingPath(event: string): void {
     this.eventCreate.image = event;
+  }
+
+  addressFromMap(infos : { address: String, long: String, lat: String}): void {
+    console.log('infos remonté : ' + infos.address + ' coordonée : ' + infos.lat + ', ' + infos.long);
   }
 }
 

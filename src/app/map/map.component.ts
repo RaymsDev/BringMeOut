@@ -7,6 +7,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import {MapService} from './map.service';
 declare let google: any;
 
 @Component({
@@ -17,12 +18,14 @@ declare let google: any;
 export class MapComponent implements OnInit {
   coordinates: ICoordinates;
   map: any;
+  autocomplete: any;
   userPositionMarker :IMarker;
-  constructor() {}
+  constructor(private mapService: MapService) {}
 
   ngOnInit() {
     this.initMarkers();
     this.getPosition();
+    this.initAutocompleteChangeLister();
   }
 
   private getPosition() {
@@ -53,6 +56,11 @@ export class MapComponent implements OnInit {
     });
   }
 
+  private initAutocompleteChangeLister() {
+    let input = document.getElementById('pac-input');
+
+  }
+
   private initAutocomplete() {
     const component = this;
     // Create the search box and link it to the UI element.
@@ -73,7 +81,7 @@ export class MapComponent implements OnInit {
         scaledSize: new google.maps.Size(50, 50),
         url: this.userPositionMarker.icon
       },
-      
+
       map: this.map,
       title: 'Your position!'
     });
@@ -83,7 +91,14 @@ export class MapComponent implements OnInit {
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
     searchBox.addListener('places_changed', function () {
+
       let places = searchBox.getPlaces();
+
+      // AQ
+      if (places.length === 1) {
+        //console.log( 'ne :' + places[0].geometry.location.lat() + 'we :' + places[0].geometry.location.lng());
+        component.mapService.setActualCoordinate(places[0].geometry.location.lat(), places[0].geometry.location.lng())
+      }
 
       if (places.length == 0) {
         return;

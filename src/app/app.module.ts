@@ -15,6 +15,7 @@ import { MapModule } from './map/map.module';
 import { FIREBASE_MODULES } from './shared/firebase.shared';
 import { SharedModule } from './shared/shared.module';
 import { AngularFirestore } from 'angularfire2/firestore';
+import {EventListComponent} from './event/event-list/event-list.component';
 
 
 
@@ -33,6 +34,7 @@ const MATERIAL_MODULES = [
 @NgModule({
   declarations: [
     AppComponent,
+    EventListComponent,
   ],
   imports: [
     SharedModule,

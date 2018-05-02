@@ -1,5 +1,6 @@
 <div class="form-event-create">
-  <div class="container-event-form">
+  <div class="event-form-title mat-title">Create a new Event </div>
+    <div class="container-event-form">
     <mat-form-field
       [hideRequiredMarker]="options.value.hideRequired"
       [floatLabel]="options.value.floatLabel">
@@ -35,6 +36,10 @@
       </mat-form-field>
     </div>
 
+    <div class="event-map-form-map">
+      <app-map-form (addressEvent)="addressFromMap($event)"></app-map-form>
+    </div>
+
     <div class="event-file-upload">
       <app-file-upload (downloaded)="imageSrtingPath($event)"></app-file-upload>
     </div>
@@ -54,7 +59,8 @@
       </mat-chip-list>
     </mat-form-field>
 
-
-    <button mat-button (click)="sendButtonFire()">Send</button>
+   <button mat-button (click)="sendButtonFire()">Send</button>
   </div>
+
+
 </div>

@@ -4,9 +4,14 @@
       <a class="link" routerLink="/">BringMeOut</a>
     </div>
     <div class="button-container">
-        <button class="login-button" mat-raised-button color="primary" *ngIf="!userIsLoggedIn()" routerLink="/login">Login</button>
-        <button class="login-button" mat-raised-button color="accent" *ngIf="userIsLoggedIn()" routerLink="/logout">Logout</button>
-        <div class="add-event-container">
+      <button class="login-button" mat-raised-button color="primary" *ngIf="!userIsLoggedIn()" routerLink="/login">Login</button>
+      <button class="login-button" mat-raised-button color="accent" *ngIf="userIsLoggedIn()" routerLink="/logout">Logout</button>
+
+      <div class="event-list">
+        <app-event-list></app-event-list>
+      </div>
+
+      <div class="add-event-container" *ngIf="userIsLoggedIn()">
           <button class="add-event-button" mat-fab *ngIf="userIsLoggedIn()" routerLink="/edit">
             <mat-icon aria-label="Boutton de creation de formulaire">add</mat-icon>
           </button>
