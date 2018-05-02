@@ -2,7 +2,6 @@ import { EventService } from "./../event/event.service";
 import { IMarker, Marker } from "../../models/marker.model";
 import { ICoordinates, Coordinates } from "./../../models/coordinates.model";
 import { Component, OnInit } from "@angular/core";
-import {MapService} from './map.service';
 declare let google: any;
 
 @Component({
@@ -103,13 +102,7 @@ export class MapComponent implements OnInit {
     searchBox.addListener('places_changed', function () {
       let places = searchBox.getPlaces();
 
-      // AQ
-      if (places.length === 1) {
-        //console.log( 'ne :' + places[0].geometry.location.lat() + 'we :' + places[0].geometry.location.lng());
-        component.mapService.setActualCoordinate(places[0].geometry.location.lat(), places[0].geometry.location.lng())
-      }
-
-      if (places.length == 0) {
+      if (places.length === 0) {
         return;
       }
 
