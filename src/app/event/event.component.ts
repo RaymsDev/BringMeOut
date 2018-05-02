@@ -88,8 +88,9 @@ export class EventComponent implements OnInit {
     this.eventCreate.image = event;
   }
 
-  addressFromMap(infos : { address: String, long: String, lat: String}): void {
-    console.log('infos remonté : ' + infos.address + ' coordonée : ' + infos.lat + ', ' + infos.long);
+  addressFromMap(infos : { address: string, lng: number, lat: number}): void {
+    this.eventCreate.location = { address: infos.address  , coordinates: { lat: infos.lat, lng: infos.lng } };
+    //console.log('infos remonté : ' + infos.address + ' coordonée : ' + infos.lat + ', ' + infos.long);
   }
 }
 

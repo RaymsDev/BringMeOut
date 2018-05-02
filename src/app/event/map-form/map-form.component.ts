@@ -13,7 +13,7 @@ declare let google: any;
 })
 export class MapFormComponent implements OnInit {
 
-  @Output() addressEvent = new EventEmitter<{ address: String, long: String, lat: String}>();
+  @Output() addressEvent = new EventEmitter<{ address: String, lng: number, lat: number}>();
 
   coordinates: ICoordinates;
   map: any;
@@ -94,7 +94,7 @@ export class MapFormComponent implements OnInit {
         //console.log( 'ne :' + places[0].geometry.location.lat() + ' we :' + places[0].geometry.location.lng());
         //console.log('Adresse : ' + places[0].formatted_address);
 
-        component.addressEvent.emit({ address: places[0].formatted_address, long: places[0].geometry.location.lng(), lat: places[0].geometry.location.lat()});
+        component.addressEvent.emit({ address: places[0].formatted_address, lng: places[0].geometry.location.lng(), lat: places[0].geometry.location.lat()});
         //component.mapService.setActualCoordinate(places[0].geometry.location.lat(), places[0].geometry.location.lng());
       }
 
