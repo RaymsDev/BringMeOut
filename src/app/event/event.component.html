@@ -1,56 +1,66 @@
 <div class="form-event-create">
+  <div class="event-form-title mat-title">Create a new Event </div>
+    <div class="container-event-form">
     <mat-form-field
-    [hideRequiredMarker]="options.value.hideRequired"
-    [floatLabel]="options.value.floatLabel">
-    <input matInput placeholder="Name" [(ngModel)]="eventCreate.name" />
-    <button mat-button *ngIf="eventCreate.name" matSuffix mat-icon-button aria-label="Clear" (click)="eventCreate.name=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
+      [hideRequiredMarker]="options.value.hideRequired"
+      [floatLabel]="options.value.floatLabel">
+      <input matInput placeholder="Name" [(ngModel)]="eventCreate.name" />
+      <button mat-button *ngIf="eventCreate.name" matSuffix mat-icon-button aria-label="Clear" (click)="eventCreate.name=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Description" [(ngModel)]="eventCreate.description"></textarea>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="Event type" [(ngModel)]="eventCreate.eventType">
-      <mat-option *ngFor="let eventType of eventTypeList" [value]="eventType">
-        {{ eventType }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <div class="date-edit-form">
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Start date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Descripption" [(ngModel)]="eventCreate.description"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput [matDatepicker]="picker2" placeholder="End date">
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2></mat-datepicker>
+      <mat-select placeholder="Event type" [(ngModel)]="eventCreate.eventType">
+        <mat-option *ngFor="let eventType of eventTypeList" [value]="eventType">
+          {{ eventType }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
+
+    <div class="date-edit-form">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Start date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker2" placeholder="End date">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="event-map-form-map">
+      <app-map-form (addressEvent)="addressFromMap($event)"></app-map-form>
+    </div>
+
+    <div class="event-file-upload">
+      <app-file-upload (downloaded)="imageSrtingPath($event)"></app-file-upload>
+    </div>
+
+    <mat-form-field class="demo-chip-list">
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let keyWord of eventCreate.keyWords" [selectable]="selectable"
+                  [removable]="removable" (remove)="remove(keyWord)">
+          {{keyWord}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="New KeyWord"
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event)" />
+      </mat-chip-list>
+    </mat-form-field>
+
+   <button mat-button (click)="sendButtonFire()">Send</button>
   </div>
 
-  <app-file-upload (downloaded)="imageSrtingPath($event)"></app-file-upload>
 
-  <mat-form-field class="demo-chip-list">
-    <mat-chip-list #chipList>
-      <mat-chip *ngFor="let keyWord of eventCreate.keyWords" [selectable]="selectable"
-                [removable]="removable" (remove)="remove(keyWord)">
-        {{keyWord}}
-        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-      </mat-chip>
-      <input placeholder="New KeyWord"
-             [matChipInputFor]="chipList"
-             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-             [matChipInputAddOnBlur]="addOnBlur"
-             (matChipInputTokenEnd)="add($event)" />
-    </mat-chip-list>
-  </mat-form-field>
-
-
-  <button mat-button (click)="sendButtonFire()">Send</button>
 </div>

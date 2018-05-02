@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { EventComponent } from './event.component';
 import {EventRoutingModule} from './event-routing.module';
 import {EventService} from './event.service';
+import { EventListComponent } from './event-list/event-list.component';
 
 import {SharedModule} from '../shared/shared.module';
 
@@ -18,6 +19,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
 import {FileUploadModule} from '../file-upload/file-upload.module';
+import {MapModule} from '../map/map.module';
+import { MapFormComponent } from './map-form/map-form.component';
 
 
 const MATERIAL_MODULES = [
@@ -39,7 +42,7 @@ const MATERIAL_MODULES = [
     ...MATERIAL_MODULES,
     SharedModule
   ],
-  declarations: [EventComponent],
+  declarations: [EventComponent, MapFormComponent],
   providers: [EventService, FormBuilder,  {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'}]
 })
 export class EventModule { }

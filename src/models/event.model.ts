@@ -9,7 +9,7 @@ export interface IEvent{
   location:ILocation;
   description:string;
   keyWords:string[];
-
+  creator: string;
 }
 
 export class Event implements IEvent{
@@ -21,9 +21,10 @@ export class Event implements IEvent{
   location:ILocation;
   description:string;
   keyWords:string[];
+  creator: string;
 
-  constructor(data? :Partial<IEvent>){
-    if(!data){
+  constructor(data?: Partial<IEvent>){
+    if (!data){
       this.name = null;
       this.image = null;
       this.eventType = null;
@@ -32,10 +33,11 @@ export class Event implements IEvent{
       this.location = null;
       this.description = null;
       this.keyWords = new Array<string>();
+      this.creator = null;
       return;
     }
 
-    this.name = data.name ? data.name : "";
+    this.name = data.name ? data.name : '';
     this.image = data.image ? data.image : null;
     this.eventType = data.eventType ? data.eventType : null;
     this.start = data.start ? data.start : new Date();
@@ -43,5 +45,6 @@ export class Event implements IEvent{
     this.location = data.location ? data.location : null;
     this.description = data.description ? data.description : null;
     this.keyWords = new Array<string>();
+    this.creator = data.creator ? data.creator : '';
   }
 }
