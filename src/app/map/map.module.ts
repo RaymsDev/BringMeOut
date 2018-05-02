@@ -1,3 +1,4 @@
+import { EventModule } from './../event/event.module';
 import { MapRoutingModule } from './map-routing.module';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
@@ -7,7 +8,7 @@ import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core/src/meta
 import {MapService} from './map.service';
 
 @NgModule({
-    imports: [SharedModule, MapRoutingModule],
+    imports: [SharedModule, MapRoutingModule, EventModule],
     exports: [MapComponent],
     declarations: [MapComponent],
     providers: [MapService],
