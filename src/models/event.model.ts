@@ -1,10 +1,12 @@
+import { ILocation } from "./location.model";
+
 export interface IEvent{
   name:string;
   image:string;
   eventType:string;
   start:Date;
   end:Date;
-  location:string;
+  location:ILocation;
   description:string;
   keyWords:string[];
 
@@ -16,7 +18,7 @@ export class Event implements IEvent{
   eventType:string;
   start:Date;
   end:Date;
-  location:string;
+  location:ILocation;
   description:string;
   keyWords:string[];
 
