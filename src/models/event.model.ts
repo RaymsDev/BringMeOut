@@ -1,27 +1,27 @@
-export interface IEvent{
-  name: string;
-  image: string;
-  eventType: string;
-  start: Date;
-  end: Date;
-  location: string;
-  description: string;
-  keyWords: string[];
-  creator: string;
+import { ILocation } from "./location.model";
 
+export interface IEvent{
+  name:string;
+  image:string;
+  eventType:string;
+  start:Date;
+  end:Date;
+  location:ILocation;
+  description:string;
+  keyWords:string[];
+  creator: string;
 }
 
 export class Event implements IEvent{
-  name: string;
-  image: string;
-  eventType: string;
-  start: Date;
-  end: Date;
-  location: string;
-  description: string;
-  keyWords: string[];
+  name:string;
+  image:string;
+  eventType:string;
+  start:Date;
+  end:Date;
+  location:ILocation;
+  description:string;
+  keyWords:string[];
   creator: string;
-
 
   constructor(data?: Partial<IEvent>){
     if (!data){
