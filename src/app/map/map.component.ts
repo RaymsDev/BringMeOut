@@ -1,20 +1,8 @@
-<<<<<<< HEAD
-import { IMarker, Marker } from '../../models/marker.model';
-import {
-  ICoordinates,
-  Coordinates
-} from './../../models/coordinates.model';
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {MapService} from './map.service';
-=======
 import { EventService } from "./../event/event.service";
 import { IMarker, Marker } from "../../models/marker.model";
 import { ICoordinates, Coordinates } from "./../../models/coordinates.model";
 import { Component, OnInit } from "@angular/core";
->>>>>>> 3c974873014781bb2d5717618ecac47d867efa95
+import {MapService} from './map.service';
 declare let google: any;
 
 @Component({
@@ -25,14 +13,8 @@ declare let google: any;
 export class MapComponent implements OnInit {
   coordinates: ICoordinates;
   map: any;
-<<<<<<< HEAD
-  autocomplete: any;
-  userPositionMarker :IMarker;
-  constructor(private mapService: MapService) {}
-=======
   userPositionMarker: IMarker;
   constructor(public eventService: EventService) {}
->>>>>>> 3c974873014781bb2d5717618ecac47d867efa95
 
   ngOnInit() {
     this.initMarkers();
@@ -101,7 +83,7 @@ export class MapComponent implements OnInit {
       this.initSearchPlace(markers);
     });
 
-    
+
   }
 
   private initSearchPlace(eventMarkers: Array<any>){
@@ -118,12 +100,7 @@ export class MapComponent implements OnInit {
     });
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
-<<<<<<< HEAD
     searchBox.addListener('places_changed', function () {
-
-=======
-    searchBox.addListener("places_changed", function() {
->>>>>>> 3c974873014781bb2d5717618ecac47d867efa95
       let places = searchBox.getPlaces();
 
       // AQ
