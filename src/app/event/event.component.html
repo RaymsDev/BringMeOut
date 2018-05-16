@@ -2,6 +2,7 @@
   <div class="event-form-title mat-title">Create a new Event </div>
     <div class="container-event-form">
     <mat-form-field
+<<<<<<< HEAD
       [hideRequiredMarker]="options.value.hideRequired"
       [floatLabel]="options.value.floatLabel">
       <input matInput placeholder="Name" [(ngModel)]="eventCreate.name" />
@@ -12,6 +13,33 @@
 
     <mat-form-field class="example-full-width">
       <textarea matInput placeholder="Descripption" [(ngModel)]="eventCreate.description"></textarea>
+=======
+    [hideRequiredMarker]="options.value.hideRequired"
+    [floatLabel]="options.value.floatLabel">
+    <input matInput placeholder="Name" [(ngModel)]="eventCreate.name" />
+    <button mat-button *ngIf="eventCreate.name" matSuffix mat-icon-button aria-label="Clear" (click)="eventCreate.name=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Description" [(ngModel)]="eventCreate.description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Event type" [(ngModel)]="eventCreate.eventType">
+      <mat-option *ngFor="let eventCategory of eventCategoryList" [value]="eventCategory">
+        {{ eventCategory.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="date-edit-form">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Start date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+>>>>>>> feature/eventCat
     </mat-form-field>
 
     <mat-form-field>

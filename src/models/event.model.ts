@@ -1,9 +1,10 @@
+import { IEventCategory } from './event-category';
 import { ILocation } from "./location.model";
 
 export interface IEvent{
   name:string;
   image:string;
-  eventType:string;
+  eventCategory:IEventCategory;
   start:Date;
   end:Date;
   location:ILocation;
@@ -15,7 +16,7 @@ export interface IEvent{
 export class Event implements IEvent{
   name:string;
   image:string;
-  eventType:string;
+  eventCategory:IEventCategory;
   start:Date;
   end:Date;
   location:ILocation;
@@ -27,7 +28,7 @@ export class Event implements IEvent{
     if (!data){
       this.name = null;
       this.image = null;
-      this.eventType = null;
+      this.eventCategory = null;
       this.start = new Date();
       this.end = new Date();
       this.location = null;
@@ -39,7 +40,7 @@ export class Event implements IEvent{
 
     this.name = data.name ? data.name : '';
     this.image = data.image ? data.image : null;
-    this.eventType = data.eventType ? data.eventType : null;
+    this.eventCategory = data.eventCategory ? data.eventCategory : null;
     this.start = data.start ? data.start : new Date();
     this.end = data.end ? data.end : new Date();
     this.location = data.location ? data.location : null;

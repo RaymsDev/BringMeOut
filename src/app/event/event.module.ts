@@ -1,3 +1,4 @@
+import { EventCategoryService } from './event-category.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventComponent } from './event.component';
@@ -21,6 +22,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {FileUploadModule} from '../file-upload/file-upload.module';
 import {MapModule} from '../map/map.module';
 import { MapFormComponent } from './map-form/map-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const MATERIAL_MODULES = [
@@ -40,9 +42,10 @@ const MATERIAL_MODULES = [
     EventRoutingModule,
     FileUploadModule,
     ...MATERIAL_MODULES,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   declarations: [EventComponent, MapFormComponent],
-  providers: [EventService, FormBuilder,  {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'}]
+  providers: [EventCategoryService,EventService, FormBuilder,  {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'}]
 })
 export class EventModule { }
