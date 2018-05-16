@@ -14,8 +14,8 @@
 
   <mat-form-field>
     <mat-select placeholder="Event type" [(ngModel)]="eventCreate.eventType">
-      <mat-option *ngFor="let eventType of eventTypeList" [value]="eventType">
-        {{ eventType }}
+      <mat-option *ngFor="let eventCategory of eventCategoryList" [value]="eventCategory">
+        {{ eventCategory.name }}
       </mat-option>
     </mat-select>
   </mat-form-field>

@@ -1,3 +1,4 @@
+import { EventCategoryService } from "./../event/event-category.service";
 import { EventService } from "./../event/event.service";
 import { IMarker, Marker } from "../../models/marker.model";
 import { ICoordinates, Coordinates } from "./../../models/coordinates.model";
@@ -13,7 +14,10 @@ export class MapComponent implements OnInit {
   coordinates: ICoordinates;
   map: any;
   userPositionMarker: IMarker;
-  constructor(public eventService: EventService) {}
+  constructor(
+    public eventService: EventService,
+    private eventCategoryService: EventCategoryService
+  ) {}
 
   ngOnInit() {
     this.initMarkers();
@@ -52,8 +56,6 @@ export class MapComponent implements OnInit {
   }
 
   private initAutocomplete() {
-
-
     let markers = [];
 
     let userMarker = new google.maps.Marker({
@@ -69,17 +71,14 @@ export class MapComponent implements OnInit {
 
     markers.push(userMarker);
 
-    let eventsMarkers
-    this.getEventMarkers(this.map)
-    .then(eventMarkers=>{
+    let eventsMarkers;
+    this.getEventMarkers(this.map).then(eventMarkers => {
       markers.push(...eventMarkers);
       this.initSearchPlace(markers);
     });
-
-    
   }
 
-  private initSearchPlace(eventMarkers: Array<any>){
+  private initSearchPlace(eventMarkers: Array<any>) {
     const component = this;
     let markers = [];
     // Create the search box and link it to the UI element.
@@ -139,24 +138,30 @@ export class MapComponent implements OnInit {
     const promise = new Promise<Array<any>>(resolve => {
       this.eventService.getEvents().subscribe(events => {
         const eventMarkers = events.map(e => {
-          if (e.location && e.location.coordinates) {
-            return new google.maps.Marker({
-              map: map,
-              title: e.name,
-              position: e.location.coordinates
-            });
-          }else{
-            const coordinates :ICoordinates = {
-              lat:43.578117,
-              lng:1.481942
-            };
+          this.eventCategoryService.getCategoryIcon(e).then(icon => {
+            if (e.location && e.location.coordinates) {
+              return new google.maps.Marker({
+                map: map,
+                title: e.name,
+                position: e.location.coordinates,
+                icon: {
+                  scaledSize: new google.maps.Size(50, 50),
+                  url: icon
+                }
+              });
+            } else {
+              const coordinates: ICoordinates = {
+                lat: 43.578117,
+                lng: 1.481942
+              };
 
-            return new google.maps.Marker({
-              map: map,
-              title: e.name,
-              position: coordinates
-            });
-          }
+              return new google.maps.Marker({
+                map: map,
+                title: e.name,
+                position: coordinates
+              });
+            }
+          });
         });
         resolve(eventMarkers);
       });

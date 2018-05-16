@@ -1,3 +1,4 @@
+import { EventCategoryService } from './event-category.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventComponent } from './event.component';
@@ -18,6 +19,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
 import {FileUploadModule} from '../file-upload/file-upload.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const MATERIAL_MODULES = [
@@ -37,9 +39,10 @@ const MATERIAL_MODULES = [
     EventRoutingModule,
     FileUploadModule,
     ...MATERIAL_MODULES,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   declarations: [EventComponent],
-  providers: [EventService, FormBuilder,  {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'}]
+  providers: [EventCategoryService, EventService, FormBuilder,  {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'}]
 })
 export class EventModule { }

@@ -1,7 +1,8 @@
+import { EventCategoryService } from './event-category.service';
 import { Component, OnInit } from '@angular/core';
 import {EventService} from './event.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {EventType} from '../../models/eventtype.model';
+import {IEventCategory} from '../../models/event-category';
 import {Event} from '../../models/event.model';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
@@ -22,22 +23,21 @@ export class EventComponent implements OnInit {
   selectable: boolean = true;
   removable: boolean = true;
   addOnBlur: boolean = true;
-
   // Posibility for event type select
-  eventTypeList = EventType;
-
+  eventCategoryList: Array<IEventCategory>;
   // Var for angular material list select
   options: FormGroup;
 
-  constructor(private eventService: EventService, fb: FormBuilder) {
+  constructor(private eventService: EventService, fb: FormBuilder, private eventCategoryService:EventCategoryService) {
     this.options = fb.group({
       hideRequired: false,
       floatLabel: 'auto',
     });
-
+    this.eventCategoryList = this.eventCategoryService.getCategoryList();
   }
 
   ngOnInit() {
+      
     this.eventCreate =  new Event();
   }
 
