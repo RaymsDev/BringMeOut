@@ -42,15 +42,11 @@ export class EventComponent implements OnInit {
   }
 
   ngOnInit() {
-<<<<<<< HEAD
     this.getUserInfo();
     this.resetOrEventCreate();
   }
 
   resetOrEventCreate(): void {
-=======
-      
->>>>>>> feature/eventCat
     this.eventCreate =  new Event();
     this.eventCreate.creator = this.userInfo;
   }
